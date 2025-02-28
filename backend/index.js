@@ -74,11 +74,11 @@ if (process.env.NODE_ENV === "production") {
     });
 }
 
-// Global error handler
-app.use((err, req, res, next) => {
-    console.error("Server Error:", err);
-    res.status(500).json({ message: "Internal Server Error" });
-});
+// // Global error handler
+// app.use((err, req, res, next) => {
+//     console.error("Server Error:", err);
+//     res.status(500).json({ message: "Internal Server Error" });
+// });
 
 // Start server
 const PORT = process.env.PORT || 5000;
