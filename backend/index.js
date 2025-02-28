@@ -33,7 +33,7 @@ app.use(morgan("dev"));
 
 // Secure CORS setup to allow frontend requests
 app.use(cors({
-    origin: process.env.CLIENT_URL || "http://localhost:8080",
+    origin: process.env.CLIENT_URL || "http://localhost:5000",
     credentials: true,
 }));
 
