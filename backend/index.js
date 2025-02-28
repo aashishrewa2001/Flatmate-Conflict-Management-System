@@ -5,8 +5,8 @@ const cors = require("cors");
 const connectDB = require("./config/db");
 const path = require("path");
 const morgan = require("morgan");
-const helmet = require("helmet");  // ✅ Security headers
-const rateLimit = require("express-rate-limit");  // ✅ Prevents excessive requests
+//const helmet = require("helmet");  // ✅ Security headers
+//const rateLimit = require("express-rate-limit");  // ✅ Prevents excessive requests
 
 // Load environment variables
 dotenv.config();
@@ -21,19 +21,19 @@ const app = express();
 app.use(express.json());
 app.use(morgan("dev"));
 
-// ✅ Security Middleware
-app.use(helmet());  // 🔒 Adds security headers
+// // ✅ Security Middleware
+// app.use(helmet());  // 🔒 Adds security headers
 
-// ✅ Rate Limiting (Limits excessive requests)
-const limiter = rateLimit({
-    windowMs: 10 * 60 * 1000, // 10 minutes
-    max: 20, // Limit each IP to 100 requests per windowMs
-});
-app.use(limiter);
+// // ✅ Rate Limiting (Limits excessive requests)
+// const limiter = rateLimit({
+//     windowMs: 10 * 60 * 1000, // 10 minutes
+//     max: 20, // Limit each IP to 100 requests per windowMs
+// });
+// app.use(limiter);
 
 // Secure CORS setup to allow frontend requests
 app.use(cors({
-    origin: process.env.CLIENT_URL || "http://localhost:8080" || "http://localhost:3000",
+    origin: process.env.CLIENT_URL || "http://localhost:8080",
     credentials: true,
 }));
 
@@ -68,9 +68,9 @@ app.get("/", (req, res) => res.send("QuirkyRoomie API Running"));
 
 // Serve Frontend (Optional for Deployment)
 if (process.env.NODE_ENV === "production") {
-    app.use(express.static(path.join(__dirname, "frontend/build")));
+    app.use(express.static(path.join(__dirname, "frontend/dist")));
     app.get("*", (req, res) => {
-        res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"));
+        res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"));
     });
 }
 
