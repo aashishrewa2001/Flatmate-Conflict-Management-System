@@ -14,21 +14,37 @@ const FileComplaint = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
+  
+    // ✅ Validate required fields
+    if (!title || !description) {
+      setError("Title and description are required.");
+      return;
+    }
+  
+    const token = localStorage.getItem('token');
+    if (!token) {
+      setError("User not authenticated. Please login.");
+      navigate("/login");
+      return;
+    }
+  
     try {
-      const token = localStorage.getItem('token');
       await axios.post(
-        `http://localhost:5000/api/complaints`,
+        `${import.meta.env.VITE_BACKEND_URL}/api/complaints`,
         { title, description, type, severity },
-        { headers: { Authorization: `Bearer ${token}` } }
+        { headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" } }
       );
-      // Redirect to dashboard after filing the complaint
       navigate('/dashboard');
     } catch (err) {
+      if (err.response?.status === 401) {
+        localStorage.removeItem("token");
+        navigate("/login");
+      }
       setError(err.response?.data?.message || 'Error filing complaint');
       console.error(err);
     }
   };
-
+  
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 p-4">
       <div className="w-full max-w-lg bg-white rounded-lg shadow-xl p-8 animate-fadeIn">

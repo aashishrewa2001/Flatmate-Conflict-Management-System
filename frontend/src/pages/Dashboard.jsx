@@ -6,31 +6,47 @@ import axios from 'axios';
 const Dashboard = () => {
   const [complaints, setComplaints] = useState([]);
   const [error, setError] = useState('');
-
+  const [token, setToken] = useState(localStorage.getItem('token'));
   // Fetch all active complaints for the flat
+
   const fetchComplaints = async () => {
     try {
       const token = localStorage.getItem('token');
-      const res = await axios.get(`http://localhost:5000/api/complaints`, {
+      if (!token) {
+        navigate('/login'); // Redirect to login if no token
+        return;
+      }
+  
+      const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/complaints`, {
         headers: { Authorization: `Bearer ${token}` },
       });
+  
       setComplaints(Array.isArray(res.data) ? res.data : []);
     } catch (err) {
-      setError('Failed to fetch complaints');
-      console.error(err);
+      if (err.response?.status === 401) {
+        localStorage.removeItem("token");
+        navigate("/login"); // Redirect to login on token expiration
+      }
     }
   };
-
+  
+  
   useEffect(() => {
-    fetchComplaints();
-  }, []);
+    if (!token) {
+      console.error("No token found, redirecting to login.");
+      navigate('/login');  // Redirect to login if no token
+    } else {
+      fetchComplaints();
+    }
+  }, [token]);
+  
 
   // Handle voting (upvote/downvote)
   const handleVote = async (complaintId, voteType) => {
     try {
       const token = localStorage.getItem('token');
       await axios.post(
-        `http://localhost:5000/api/complaints/${complaintId}/vote`,
+        `${import.meta.env.VITE_BACKEND_URL}/api/complaints/${complaintId}/vote`,
         { voteType },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -45,7 +61,7 @@ const Dashboard = () => {
     try {
       const token = localStorage.getItem('token');
       await axios.put(
-        `http://localhost:5000/api/complaints/${complaintId}/resolve`,
+        `${import.meta.env.VITE_BACKEND_URL}/api/complaints/${complaintId}/resolve`,
         {},
         { headers: { Authorization: `Bearer ${token}` } }
       );

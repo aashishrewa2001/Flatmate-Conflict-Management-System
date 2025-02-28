@@ -10,41 +10,60 @@ const Leaderboard = () => {
   const [activeStats, setActiveStats] = useState({});
   const [resolvedStats, setResolvedStats] = useState({});
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(true);
 
   // Fetch leaderboard data from /api/leaderboard
-  const fetchLeaderboard = async () => {
-    try {
-      const token = localStorage.getItem("token");
-      const res = await axios.get(`http://localhost:5000/api/leaderboard`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      setLeaderboardData(Array.isArray(res.data) ? res.data : []);
-    } catch (err) {
-      setError(err.response?.data?.message || "Failed to fetch leaderboard");
-      console.error(err);
+  
+const fetchLeaderboard = async () => {
+  setLoading(true);
+  try {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      navigate("/login");
+      return;
     }
-  };
+
+    const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/leaderboard`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+
+    setLeaderboardData(Array.isArray(res.data) ? res.data : []);
+  } catch (err) {
+    console.error(err);
+    if (err.response?.status === 401) {
+      localStorage.removeItem("token");
+      navigate("/login");
+    }
+    setError(err.response?.data?.message || "Failed to fetch leaderboard");
+  } finally {
+    setLoading(false);
+  }
+};
+  
 
   // Fetch flat statistics from /api/flat/stats
   const fetchFlatStats = async () => {
     try {
       const token = localStorage.getItem("token");
-      const res = await axios.get(`http://localhost:5000/api/flat/stats`, {
+      if (!token) {
+        navigate("/login");
+        return;
+      }
+  
+      const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/flat/stats`, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      // Assuming the API returns an array: [totalStats, activeStats, resolvedStats]
-      setFlatStats(
-        typeof res.data[0] === "object" && !Array.isArray(res.data[0]) ? res.data[0] : {}
-      );
-      setActiveStats(
-        typeof res.data[1] === "object" && !Array.isArray(res.data[1]) ? res.data[1] : {}
-      );
-      setResolvedStats(
-        typeof res.data[2] === "object" && !Array.isArray(res.data[2]) ? res.data[2] : {}
-      );
+  
+      setFlatStats(res.data[0] || {});
+      setActiveStats(res.data[1] || {});
+      setResolvedStats(res.data[2] || {});
     } catch (err) {
-      setError(err.response?.data?.message || "Failed to fetch flat statistics");
       console.error(err);
+      if (err.response?.status === 401) {
+        localStorage.removeItem("token");
+        navigate("/login");
+      }
+      setError(err.response?.data?.message || "Failed to fetch flat statistics");
     }
   };
 
@@ -174,7 +193,12 @@ const Leaderboard = () => {
             Flat Stats
           </button>
         </div>
-        {activeTab === "leaderboard" ? renderLeaderboard() : renderFlatStats()}
+          {loading ? (
+              <p className="text-center text-gray-500">Loading...</p>
+            ) : (
+              activeTab === "leaderboard" ? renderLeaderboard() : renderFlatStats()
+          )}
+
       </div>
     </div>
   );

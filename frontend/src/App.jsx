@@ -12,6 +12,7 @@ import FileComplaint from './pages/FileComplaint';
 import Leaderboard from './pages/Leaderboard';
 import Trending from './pages/Trending';
 import Punishment from './pages/Punishment';
+import PrivateRoute from './components/PrivateRoute'; // ✅ Import PrivateRoute
 
 function App() {
   return (
@@ -23,11 +24,23 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/file-complaint" element={<FileComplaint />} />
-        <Route path="/leaderboard" element={<Leaderboard />} />
-        <Route path="/trending" element={<Trending />} />
-        <Route path="/punishments" element={<Punishment />} />
+
+        {/* 🔒 Protected Routes */}
+        <Route path="/dashboard" element={<PrivateRoute />}>
+          <Route path="" element={<Dashboard />} />
+        </Route>
+        <Route path="/file-complaint" element={<PrivateRoute />}>
+          <Route path="" element={<FileComplaint />} />
+        </Route>
+        <Route path="/leaderboard" element={<PrivateRoute />}>
+          <Route path="" element={<Leaderboard />} />
+        </Route>
+        <Route path="/trending" element={<PrivateRoute />}>
+          <Route path="" element={<Trending />} />
+        </Route>
+        <Route path="/punishments" element={<PrivateRoute />}>
+          <Route path="" element={<Punishment />} />
+        </Route>
       </Routes>
     </Router>
   );

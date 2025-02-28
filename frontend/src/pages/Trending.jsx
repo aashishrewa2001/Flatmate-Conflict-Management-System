@@ -5,20 +5,30 @@ import axios from 'axios';
 const Trending = () => {
   const [complaints, setComplaints] = useState([]);
   const [error, setError] = useState('');
-
+  
   const fetchTrendingComplaints = async () => {
     try {
       const token = localStorage.getItem('token');
-      const res = await axios.get(`http://localhost:5000/api/complaints/trending`, {
+      if (!token) {
+        navigate("/login");
+        return;
+      }
+  
+      const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/complaints/trending`, {
         headers: { Authorization: `Bearer ${token}` }
       });
+  
       setComplaints(Array.isArray(res.data) ? res.data : []);
     } catch (err) {
-      setError(err.response?.data?.message || 'Failed to fetch trending complaints');
       console.error(err);
+      if (err.response?.status === 401) {
+        localStorage.removeItem("token");
+        navigate("/login"); // ✅ Auto-logout on expired token
+      }
+      setError(err.response?.data?.message || 'Failed to fetch trending complaints');
     }
   };
-
+  
   useEffect(() => {
     fetchTrendingComplaints();
   }, []);

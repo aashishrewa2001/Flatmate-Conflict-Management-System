@@ -1,26 +1,31 @@
 
-import React, { useState } from 'react';
+import React, { useState, useContext,useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../context/AuthContext'; // Import AuthContext
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { token, logout } = useContext(AuthContext); // Use context
   const navigate = useNavigate();
-  const token = localStorage.getItem('token');
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
+    logout();
     navigate('/login');
   };
+
+  // ✅ Auto-logout if token is expired
+  useEffect(() => {
+    if (token) {
+      const decoded = JSON.parse(atob(token.split(".")[1])); // Decode JWT
+      if (decoded.exp * 1000 < Date.now()) {
+        handleLogout(); // Auto logout on token expiry
+      }
+    }
+  }, [token]);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
-
-  // Common links available to all users
-  const commonLinks = (
-    <>
-    </>
-  );
 
   // Links for logged-in users
   const loggedInLinks = (
@@ -106,12 +111,14 @@ const Navbar = () => {
     <nav className="bg-blue-600">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
+
           {/* Logo Section */}
           <div className="flex-shrink-0">
             <Link to="/" className="text-white font-bold text-2xl">
               QuirkyRoomie
             </Link>
           </div>
+
           {/* Desktop Menu */}
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-4">
@@ -119,6 +126,7 @@ const Navbar = () => {
               {token ? loggedInLinks : loggedOutLinks}
             </div>
           </div>
+
           {/* Mobile Menu Button */}
           <div className="md:hidden">
             <button

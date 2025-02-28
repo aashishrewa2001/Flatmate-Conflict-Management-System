@@ -4,19 +4,33 @@ import axios from 'axios';
 
 const Punishment = () => {
   const [complaints, setComplaints] = useState([]);
-  
+  const [loading, setLoading] = useState(true);
   // Fetch all complaints for the current flat/user
   const fetchComplaints = async () => {
+    setLoading(true);
     try {
-      const token = localStorage.getItem('token');
-      const res = await axios.get(`http://localhost:5000/api/complaints`, {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        navigate("/login");
+        return;
+      }
+
+      const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/complaints`, {
         headers: { Authorization: `Bearer ${token}` },
       });
+
       setComplaints(Array.isArray(res.data) ? res.data : []);
     } catch (err) {
       console.error(err);
+      if (err.response?.status === 401) {
+        localStorage.removeItem("token");
+        navigate("/login");
+      }
+    } finally {
+      setLoading(false);
     }
   };
+
 
   useEffect(() => {
     fetchComplaints();
@@ -28,7 +42,7 @@ const Punishment = () => {
     try {
       const token = localStorage.getItem('token');
       const res = await axios.post(
-        `http://localhost:5000/api/punishments/${complaintId}/punish`,
+        `${import.meta.env.VITE_BACKEND_URL}/api/punishments/${complaintId}/punish`,
         {},
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -45,9 +59,12 @@ const Punishment = () => {
         <h1 className="text-4xl font-extrabold text-center text-indigo-800 mb-8">
           Punishment Generator
         </h1>
-        {complaints.length === 0 ? (
+        {loading ? (
+          <p className="text-center text-gray-500">Loading complaints...</p>
+          ) 
+          : complaints.length === 0 ? (
           <p className="text-center text-gray-600">No complaints available.</p>
-        ) : (
+          ) : (
           <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
             {complaints.map((complaint) => (
               <div key={complaint._id} className="bg-white bg-opacity-90 backdrop-blur-sm rounded-lg shadow-2xl p-6 flex flex-col h-full transform transition duration-300 hover:scale-105">
@@ -93,3 +110,5 @@ const Punishment = () => {
 };
 
 export default Punishment;
+
+

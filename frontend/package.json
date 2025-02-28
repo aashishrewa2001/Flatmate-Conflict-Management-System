@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "cross-env NODE_ENV=production vite build",
+    "start": "serve -s dist",
     "lint": "eslint .",
     "preview": "vite preview"
   },
@@ -25,11 +26,13 @@
     "@types/react": "^19.0.8",
     "@types/react-dom": "^19.0.3",
     "@vitejs/plugin-react": "^4.3.4",
+    "cross-env": "^7.0.3",
     "eslint": "^9.19.0",
     "eslint-plugin-react": "^7.37.4",
     "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-react-refresh": "^0.4.18",
     "globals": "^15.14.0",
+    "serve": "^14.2.4",
     "vite": "^6.1.0"
   }
 }
