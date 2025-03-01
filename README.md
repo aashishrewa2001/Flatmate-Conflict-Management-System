@@ -5,20 +5,20 @@ Users can file complaints, vote on issues, track resolutions, and maintain a lea
 
 ## 🌟 Features
 
-✅ User Authentication – Secure JWT-based login & registration
-✅ File Complaints – Log household issues (e.g., noise, cleanliness, bills)
-✅ Voting System – Upvote/downvote complaints for resolution priority
-✅ Gamification – Earn karma points & compete on the leaderboard
-✅ Punishment Generator – Auto-assign resolutions based on votes
-✅ Flat Statistics – Track common complaints & resolution trends
+**✅ User Authentication – Secure JWT-based login & registration**
+**✅ File Complaints – Log household issues (e.g., noise, cleanliness, bills, other)**
+**✅ Voting System – Upvote/downvote complaints for resolution priority**
+**✅ Gamification – Earn karma points & compete on the leaderboard**
+**✅ Punishment Generator – Auto-assign resolutions based on votes**
+**✅ Flat Statistics – Track common complaints & resolution trends**
 
 ## 🚀 **Live Demo**
 - 🔗 **Frontend:** [Flatmate Conflict management System](https://flatmate-conflict-management-system.onrender.com)  
 - 🔗 **Backend API:** [API Base URL](https://flatmate-conflict-management-system-1.onrender.com/api/auth) L
 
 
-## 🛠️ **Tech Stack**
-### **Frontend** (React + Vite)
+### 🛠️ **Tech Stack**
+## **Frontend** (React + Vite)
 - ⚛️ **React.js** – UI Framework  
 - 🎨 **Tailwind CSS** – Styling  
 - 🔗 **Axios** – API Requests  
@@ -26,7 +26,7 @@ Users can file complaints, vote on issues, track resolutions, and maintain a lea
 - 🌐 **Vite** – Fast Development Server  
 
 
-### **Backend** (Node.js + Express)
+## **Backend** (Node.js + Express)
 - 🛠️ **Express.js** – Backend Framework  
 - 🛡️ **JWT Authentication** – Secure User Login  
 - 🔒 **bcrypt.js** – Password Hashing  
@@ -37,38 +37,38 @@ Users can file complaints, vote on issues, track resolutions, and maintain a lea
 
 ## 1️⃣ Clone the Repository
 
-git clone https://github.com/aashishrewa2001/Flatmate-Conflict-Management-System.git
-cd Flatmate-Conflict-Management-System
+- git clone https://github.com/aashishrewa2001/Flatmate-Conflict-Management-System.git
+- cd Flatmate-Conflict-Management-System**
 
 ## 2️⃣ Backend Setup
 
-cd backend
-npm install
+- cd backend
+- npm install
 
 ## 🔹 Configure Environment Variables (backend/.env****):
 
-PORT=5000
-MONGO_URI=your-mongodb-uri
-JWT_SECRET=your-secret-key
-CLIENT_URL=https://flatmate-conflict-management-system.onrender.com
+- PORT=5000
+- MONGO_URI=your-mongodb-uri
+- JWT_SECRET=your-secret-key
+- CLIENT_URL=https://flatmate-conflict-management-system.onrender.com
 
 ## 🔹 Run Backend Server
 
-npm run dev  # Development Mode
-npm start    # Production Mode
+- npm run dev  # Development Mode
+- npm start    # Production Mode
 
 ## 3️⃣ Frontend Setup
 
-cd ../frontend
-npm install
+- cd ../frontend
+- npm install
 
-🔹 Configure Environment Variables (frontend/.env****):
+## 🔹 Configure Environment Variables (frontend/.env****):
 
-VITE_BACKEND_URL=https://flatmate-conflict-management-system-1.onrender.com
+- VITE_BACKEND_URL=https://flatmate-conflict-management-system-1.onrender.com
 
 ## 🔹 Run Frontend
 
-npm run dev  # Open http://localhost:5173
+- npm run dev  # Open http://localhost:5173
 
 ### 🌀 API Endpoints
 
@@ -107,50 +107,50 @@ npm run dev  # Open http://localhost:5173
 
 **Push the latest code to GitHub**
 
-git add .
-git commit -m "Updated backend"
-git push origin main
+- git add .
+- git commit -m "Updated backend"
+- git push origin main
 
-**Deploy backend to Render**
+## Deploy backend to Render**
 
-✅Go to Render
+**✅Go to Render**
 
-✅Create a Web Service
+**✅Create a Web Service**
 
-✅Connect your GitHub repository (backend/)
+**✅Connect your GitHub repository (backend/)**
 
-✅Set Environment Variables
+**✅Set Environment Variables**
 
-✅Click Deploy
+**✅Click Deploy**
 
 ## 2️⃣ Deploy Frontend on Render
 
 **Build Frontend**
 
-# cd frontend
-# npm run build
+- cd frontend
+- npm run build
 
-**Deploy to Render (Static Site)**
+## Deploy to Render (Static Site)
 
-✅Go to Render
+**✅Go to Render**
 
-✅Create a Static Site
+**✅Create a Static Site**
 
-✅Connect your GitHub repository (frontend/)
+**✅Connect your GitHub repository (frontend/)**
 
-✅Set Build Command: npm run build
+**✅Set Build Command: npm run build**
 
-✅Set Publish Directory: dist/
+**✅Set Publish Directory: dist/**
 
-✅Click Deploy
+**✅Click Deploy**
 
 ## 🛠️ **Git Commands**
 
 **Basic Git Workflow**
 
-git add .                # Stage all changes
-git commit -m "Message"  # Commit changes
-git push origin main     # Push to GitHub
+- git add .                # Stage all changes
+- git commit -m "Message"  # Commit changes
+- git push origin main     # Push to GitHub
 
 **Pull Latest Changes**
 
@@ -158,18 +158,18 @@ git push origin main     # Push to GitHub
 
 **Reset & Fix Errors**
 
-git reset --hard HEAD~1  # Undo last commit
-git status               # Check modified files
+- git reset --hard HEAD~1  # Undo last commit
+- git status               # Check modified files
 
 **Change Branch**
 
-git checkout -b feature-branch  # Create & switch to a new branch
-git checkout main               # Switch back to main branch
+- git checkout -b feature-branch  # Create & switch to a new branch
+- git checkout main               # Switch back to main branch
 
 ## 🎡 Project Status
 
-👉 Backend Deployed: https://flatmate-conflict-management-system-1.onrender.com/
-👉 Frontend Deployed: https://flatmate-conflict-management-system.onrender.com
+- 👉 **Backend Deployed:** https://flatmate-conflict-management-system-1.onrender.com/
+- **👉 Frontend Deployed:** https://flatmate-conflict-management-system.onrender.com
 
 
 ## 👨‍💻 Author
