@@ -5,12 +5,12 @@ Users can file complaints, vote on issues, track resolutions, and maintain a lea
 
 ## 🌟 Features
 
-**✅ User Authentication – Secure JWT-based login & registration**
-**✅ File Complaints – Log household issues (e.g., noise, cleanliness, bills, other)**
-**✅ Voting System – Upvote/downvote complaints for resolution priority**
-**✅ Gamification – Earn karma points & compete on the leaderboard**
-**✅ Punishment Generator – Auto-assign resolutions based on votes**
-**✅ Flat Statistics – Track common complaints & resolution trends**
+- **✅ User Authentication – Secure JWT-based login & registration**
+- **✅ File Complaints – Log household issues (e.g., noise, cleanliness, bills, other)**
+- **✅ Voting System – Upvote/downvote complaints for resolution priority**
+- **✅ Gamification – Earn karma points & compete on the leaderboard**
+= **✅ Punishment Generator – Auto-assign resolutions based on votes**
+= **✅ Flat Statistics – Track common complaints & resolution trends**
 
 ## 🚀 **Live Demo**
 - 🔗 **Frontend:** [Flatmate Conflict management System](https://flatmate-conflict-management-system.onrender.com)  
