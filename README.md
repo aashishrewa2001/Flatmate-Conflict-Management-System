@@ -74,31 +74,32 @@ Users can file complaints, vote on issues, track resolutions, and maintain a lea
 
 ## 🔹 Authentication
 
-**Method** – POST | **Endpoint** - /api/auth/register | **Description** - Register User
-**Method** – POST | **Endpoint** - /api/auth/login | **Description** - Login & Get JWT Token
+- **Method** – POST | **Endpoint** - /api/auth/register | **Description** - Register User
+- **Method** – POST | **Endpoint** - /api/auth/login | **Description** - Login & Get JWT Token
 
 ## 🔹 **Complaints**
 
-**Method** – POST | **Endpoint** - /api/complaints | **Description** - File a Complaint
-**Method** – GET | **Endpoint** - /api/complaints | **Description** - Get All Complaints
-**Method** – PUT | **Endpoint** - /api/complaints/:id/resolve | **Description** - Mark Complaint as Resolved
+- **Method** – POST | **Endpoint** - /api/complaints | **Description** - File a Complaint
+- **Method** – GET | **Endpoint** - /api/complaints | **Description** - Get All Complaints
+- **Method** – PUT | **Endpoint** - /api/complaints/:id/resolve | - -- 
+- **Description** - Mark Complaint as Resolved
 
 ## 🔹 **Voting**
 
-**Method** – POST | **Endpoint** - /api/complaints/:id/vote | **Description** - Upvote/Downvote Complaint
+- **Method** – POST | **Endpoint** - /api/complaints/:id/vote | - ----------- **Description** - Upvote/Downvote Complaint
 
 ## 🔹 **Leaderboard & Stats** 
 
-**Method** – GET | **Endpoint** - /api/leaderboard | **Description** - Fetch Leaderboard
-**Method** – GET | **Endpoint** - /api/flat/stats | **Description** - Fetch Flat Statistics
+- **Method** – GET | **Endpoint** - /api/leaderboard | **Description** - Fetch Leaderboard
+- **Method** – GET | **Endpoint** - /api/flat/stats | **Description** - Fetch Flat Statistics
 
 ## 🔹 **Treading** 
 
-**Method** – GET | **Endpoint** - /api/complaints/trending | **Description** - Register User
+- **Method** – GET | **Endpoint** - /api/complaints/trending | - ------------ **Description** - Register User
 
 ## 🔹 **Auto Punishment Generation** 
 
-**Method** – POST | **Endpoint** - /api/punishments/:complaintId/punish | **Description** - Register User
+- **Method** – POST | **Endpoint** - /api/punishments/:complaintId/punish | - **Description** - Register User
 
 
 ### 🌍 **Deployment**
@@ -113,15 +114,15 @@ Users can file complaints, vote on issues, track resolutions, and maintain a lea
 
 ## Deploy backend to Render**
 
-**✅Go to Render**
+- **✅Go to Render**
 
-**✅Create a Web Service**
+- **✅Create a Web Service**
 
-**✅Connect your GitHub repository (backend/)**
+- **✅Connect your GitHub repository (backend/)**
 
-**✅Set Environment Variables**
+- **✅Set Environment Variables**
 
-**✅Click Deploy**
+- **✅Click Deploy**
 
 ## 2️⃣ Deploy Frontend on Render
 
@@ -132,17 +133,17 @@ Users can file complaints, vote on issues, track resolutions, and maintain a lea
 
 ## Deploy to Render (Static Site)
 
-**✅Go to Render**
+- **✅Go to Render**
 
-**✅Create a Static Site**
+- **✅Create a Static Site**
 
-**✅Connect your GitHub repository (frontend/)**
+- **✅Connect your GitHub repository (frontend/)**
 
-**✅Set Build Command: npm run build**
+- **✅Set Build Command: npm run build**
 
-**✅Set Publish Directory: dist/**
+- **✅Set Publish Directory: dist/**
 
-**✅Click Deploy**
+- **✅Click Deploy**
 
 ## 🛠️ **Git Commands**
 
